@@ -1,0 +1,13 @@
+customer_id,order_status,order_type,amount
+2,Delivered,Mobile,12999
+1,Shipped,T-Shirt,750
+5,Delivered,Laptop,44000
+6,Shipped,Shirt,900
+10,Delivered,Toys,450
+8,Delivered,Watch,1499
+3,Shipped,Mobile,9999
+4,Pending,TV,22000
+1,Delivered,Pendrive,399
+9,Pending,Camera,34000
+2,Delivered,Charger,249
+8,Shipped,Laptop,35000
