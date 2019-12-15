@@ -9,16 +9,11 @@ const pool = new Pool({
 });
 
 
-
-
-
 //    pool.query(
 //   "CREATE TABLE IF NOT EXISTS customers(customer_id SERIAL PRIMARY KEY, name VARCHAR(50), phone VARCHAR(10),email VARCHAR(50), city VARCHAR(50), pincode INT)",
 //   (err, res) => {
 //     console.log(err, res);
 //   })
-
-
 
 
 // pool.query(
@@ -45,4 +40,4 @@ const pool = new Pool({
 //   );
 
 
-module.exports=pool;
+module.exports= pool;
