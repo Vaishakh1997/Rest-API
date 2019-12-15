@@ -1,15 +1,7 @@
-const { Pool, Client } = require("pg");
-
-const pool = new Pool({
-  user: "postgres",
-  host: "localhost",
-  database: "restapi",
-  password: "vaishakh@1997",
-  port: "5432"
-});
+const pool=require("/home/vaishakh/rest/seedData.js")
 
 async function getCustomers(){
-  return await pool.query('SELECT * FROM customers')
+  return await pool.query('SELECT * FROM customers ORDER BY customer_id')
 }
 
 
