@@ -27,6 +27,7 @@ async function deleteCustomers(customer_id){
 }
 
 
+
 module.exports = {
   getCustomers,
   getCustomersById,
