@@ -4,9 +4,7 @@ const controllers = require('../controllers/orders.js')
 const middleware=require("../middleware/customers.js")
 
 
-router.get('/', (request, response) => {
-  response.json({ info: 'Node.js, Express, and Postgres API' })
-})
+router.get('/', (request, response) => response.json({ info: 'Node.js, Express, and Postgres API' }))
 
 router.get('/orders', controllers.getOrders)
 router.get('/orders/:id', controllers.getOrdersById, middleware.errorHandleOrderId)
