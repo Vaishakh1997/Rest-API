@@ -39,5 +39,10 @@ const pool = new Pool({
 //     }
 //   );
 
+// pool.query(
+//   "CREATE TABLE IF NOT EXISTS users(name VARCHAR(50), email VARCHAR(50), password VARCHAR(50))",
+//   (err, res) => {
+//     console.log(err, res);
+//   })
 
 module.exports= pool;
