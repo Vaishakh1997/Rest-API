@@ -24,7 +24,7 @@ function validateBody(body)
 function validateBodyOrders(body)
 {
      const schema = {
-          customer_id: Joi.number().positive().integer().max(25).required(),
+          customer_id: Joi.number().positive().integer().required(),
           order_status: Joi.string().required(),
           order_type: Joi.string().required(),
           amount: Joi.number().integer().required(),
@@ -33,8 +33,19 @@ function validateBodyOrders(body)
 }
 
 
+function validateUsers(body)
+{
+     const schema = {
+          name: Joi.string().min(5).max(18).required(),
+          email: Joi.string().email().required(),
+          password: Joi.string().min(3).max(15).required()
+      };
+      return Joi.validate(body,schema)
+}
+
 module.exports = {
      validateId,
      validateBody,
-     validateBodyOrders
+     validateBodyOrders,
+     validateUsers
 }

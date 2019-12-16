@@ -1,18 +1,18 @@
 const express = require('express')
-const router1 = express.Router();
-const db = require('../controllers/orders.js')
+const router = express.Router();
+const controllers = require('../controllers/orders.js')
 const middleware=require("../middleware/customers.js")
 
 
-router1.get('/', (request, response) => {
+router.get('/', (request, response) => {
   response.json({ info: 'Node.js, Express, and Postgres API' })
 })
 
-router1.get('/orders', db.getOrders)
-router1.get('/orders/:id', db.getOrdersById, middleware.errorHandle)
-router1.post('/orders', db.createOrders, middleware.errorHandleCustomerId)
-router1.put('/orders/:id', db.updateOrders, middleware.errorHandle)
-router1.delete('/orders/:id', db.deleteOrders, middleware.errorHandle)
+router.get('/orders', controllers.getOrders)
+router.get('/orders/:id', controllers.getOrdersById, middleware.errorHandleOrderId)
+router.post('/orders', controllers.createOrders, middleware.errorHandleCustomerId)
+router.put('/orders/:id', controllers.updateOrders, middleware.errorHandleOrderId)
+router.delete('/orders/:id', controllers.deleteOrders, middleware.errorHandleOrderId)
 
 
-module.exports=router1;
+module.exports=router;

@@ -6,7 +6,6 @@ async function getCustomers(){
 
 
 async function getCustomersById(customer_id){
- // const id = parseInt(request.params.id)
   return await pool.query('SELECT * FROM customers WHERE customer_id = $1', [customer_id])
 }
 

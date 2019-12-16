@@ -5,7 +5,7 @@ const validate = require("../utils/validation.js")
 
 const getOrders = (request, response, next) => {
      db.getOrders()
-          .then(data => { response.json(data.rows)})
+          .then(data => { response.status(200).json(data.rows)})
           .catch(err => next(err));
 };
 
@@ -20,9 +20,8 @@ const getOrdersById = (request, response, next) => {
           db.getOrdersById(order_id)
                .then(data => {
                     if(data.rows[0] !=undefined)
-                         response.json(data.rows)
-                    else 
-                         next()
+                         response.status(200).json(data.rows)
+                    else next()
                })
      }        
 }
@@ -39,8 +38,7 @@ const createOrders=(request, response, next) =>{
                .then(data => {
                     if(data.rows[0] !=undefined){
                          db.createOrders(customer_id, order_status, order_type, amount)
-                              .then(data => response.json(`Order ${data.rows[0].order_id} is Added Successfully...`))
-                              .catch(err => next(err));
+                              .then(data => response.status(200).json(`Order ${data.rows[0].order_id} is Added to the Customer ID ${customer_id} Successfully...`))
                     }
                     else next()
                }) 
@@ -63,7 +61,7 @@ const updateOrders=(request, response, next) =>{
                db.updateOrders(order_id, customer_id, order_status, order_type, amount)
                     .then(data=>{
                          if(data.rows[0] !=undefined)
-                         response.json(`Order ${data.rows[0].order_id} with ${data.rows[0].customer_id} Updated Successfully...`)
+                         response.status(200).json(`Order ${data.rows[0].order_id} with ${data.rows[0].customer_id} Updated Successfully...`)
                          else next();
                     })
           }
@@ -81,7 +79,7 @@ const deleteOrders=(request, response, next) =>{
           db.deleteOrders(order_id)
           .then(data=>{
                if(data.rows[0] !=undefined)
-               response.json(`Order ${data.rows[0].order_id} with ID ${data.rows[0].customer_id} deleted Successfully...`)
+               response.status(200).json(`Order ${data.rows[0].order_id} with ID ${data.rows[0].customer_id} deleted Successfully...`)
                else next()
           })
      }

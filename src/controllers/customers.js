@@ -9,7 +9,6 @@ const getCustomers = (request, response, next) => {
 };
 
 
-
 const getCustomersById = (request, response, next) => {
      const valResultId=validate.validateId(request.params.id)
      if(valResultId.error)
@@ -20,8 +19,7 @@ const getCustomersById = (request, response, next) => {
                .then(data => {
                     if(data.rows[0] !=undefined)
                          response.status(200).json(data.rows)
-                    else 
-                         next()
+                    else next()
                })
      }        
 }
@@ -56,7 +54,7 @@ const updateCustomers=(request, response, next) =>{
                db.updateCustomers(customer_id, name, email,phone,city,pincode)
                     .then(data=>{
                          if(data.rows[0] !=undefined)
-                         response.status(200).json(`Customer ${data.rows[0].name} with ${data.rows[0].customer_id} Updated Successfully...`)
+                         response.status(200).json(`Customer ${data.rows[0].name} Updated Successfully...`)
                          else next()
                     })
           }
