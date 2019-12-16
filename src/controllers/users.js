@@ -38,5 +38,4 @@ const loginUser = (request, response, next) => {
 }
 
 
-
 module.exports={createUser, loginUser}
