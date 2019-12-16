@@ -10,7 +10,6 @@ const getOrders = (request, response, next) => {
 };
 
 
-
 const getOrdersById = (request, response, next) => {
      const valResultId=validate.validateId(request.params.id)
      if(valResultId.error)
