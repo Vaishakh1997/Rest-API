@@ -1,7 +1,6 @@
 const db = require("../models/customers.js");
 const validate = require("../utils/validation.js")
 
-
 const getCustomers = (request, response, next) => {
      db.getCustomers()
           .then(data => { response.status(200).json(data.rows)})
