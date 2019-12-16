@@ -3,6 +3,7 @@ const app = express()
 const bodyParser = require('body-parser')
 const customers=require('./src/routes/customers.js')
 const orders = require('./src/routes/orders.js')
+const users = require('./src/routes/users')
 const log = require('./src/utils/config.js')
 
 const port = process.env.PORT || 3008
@@ -13,6 +14,7 @@ app.use(bodyParser.urlencoded({extended: true,}))
 app.use(log.logging)
 app.use('/',customers)
 app.use('/',orders)
+app.use('/',users)
 app.use('*',(request,response) => response.send("Invalid URL"))
 app.use(log.error)
 
