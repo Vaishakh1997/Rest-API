@@ -1,4 +1,5 @@
 const db = require("../models/orders");
+const dbcustomers = require("../models/customers")
 const validate = require("../utils/validation.js")
 
 
@@ -34,9 +35,15 @@ const createOrders=(request, response, next) =>{
           response.status(400).send(valResultBody.error.details[0].message)
      else{
           const {customer_id, order_status, order_type, amount} = request.body
-          db.createOrders(customer_id, order_status, order_type, amount)
-               .then(data => response.json(`Order ${data.rows[0].order_id} is Added Successfully...`))
-               .catch(err => next(err));
+          dbcustomers.getCustomersById(customer_id)
+               .then(data => {
+                    if(data.rows[0] !=undefined){
+                         db.createOrders(customer_id, order_status, order_type, amount)
+                              .then(data => response.json(`Order ${data.rows[0].order_id} is Added Successfully...`))
+                              .catch(err => next(err));
+                    }
+                    else next()
+               }) 
      }
 }
 
@@ -57,7 +64,7 @@ const updateOrders=(request, response, next) =>{
                     .then(data=>{
                          if(data.rows[0] !=undefined)
                          response.json(`Order ${data.rows[0].order_id} with ${data.rows[0].customer_id} Updated Successfully...`)
-                         else next()
+                         else next();
                     })
           }
      }  

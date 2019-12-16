@@ -4,7 +4,7 @@ const validate = require("../utils/validation.js")
 
 const getCustomers = (request, response, next) => {
      db.getCustomers()
-          .then(data => { response.json(data.rows)})
+          .then(data => { response.status(200).json(data.rows)})
           .catch(err => next(err));
 };
 
@@ -19,7 +19,7 @@ const getCustomersById = (request, response, next) => {
           db.getCustomersById(customer_id)
                .then(data => {
                     if(data.rows[0] !=undefined)
-                         response.json(data.rows)
+                         response.status(200).json(data.rows)
                     else 
                          next()
                })
@@ -35,7 +35,7 @@ const createCustomers=(request, response, next) =>{
      else{
           const {name,phone,email,city,pincode} = request.body
           db.createCustomers(name,phone,email,city,pincode)
-               .then(data=>response.json(`Customer ${data.rows[0].name} is Added Successfully...`))
+               .then(data=>response.status(200).json(`Customer ${data.rows[0].name} is Added Successfully...`))
                .catch(err => next(err));
      }
 }
@@ -56,7 +56,7 @@ const updateCustomers=(request, response, next) =>{
                db.updateCustomers(customer_id, name, email,phone,city,pincode)
                     .then(data=>{
                          if(data.rows[0] !=undefined)
-                         response.json(`Customer ${data.rows[0].name} with ${data.rows[0].customer_id} Updated Successfully...`)
+                         response.status(200).json(`Customer ${data.rows[0].name} with ${data.rows[0].customer_id} Updated Successfully...`)
                          else next()
                     })
           }
@@ -74,7 +74,7 @@ const deleteCustomers=(request, response, next) =>{
           db.deleteCustomers(customer_id)
           .then(data=>{
                if(data.rows[0] !=undefined)
-               response.json(`Customer ${data.rows[0].name} with ID ${data.rows[0].customer_id} deleted Successfully...`)
+               response.status(200).json(`Customer ${data.rows[0].name} with ID ${data.rows[0].customer_id} deleted Successfully...`)
                else next()
           })
      }

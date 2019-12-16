@@ -10,7 +10,7 @@ router1.get('/', (request, response) => {
 
 router1.get('/orders', db.getOrders)
 router1.get('/orders/:id', db.getOrdersById, middleware.errorHandle)
-router1.post('/orders', db.createOrders)
+router1.post('/orders', db.createOrders, middleware.errorHandleCustomerId)
 router1.put('/orders/:id', db.updateOrders, middleware.errorHandle)
 router1.delete('/orders/:id', db.deleteOrders, middleware.errorHandle)
 
