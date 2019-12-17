@@ -1,7 +1,8 @@
 const db = require("../models/users");
 const validate = require("../utils/validation.js")
-var passwordHash = require('password-hash');
-
+const passwordHash = require('password-hash');
+const jwt = require('jsonwebtoken');
+require('dotenv').config()
 
 const createUser=(request, response, next) =>{
      const valResultBody=validate.validateUsers(request.body)
@@ -30,7 +31,11 @@ const loginUser = (request, response, next) => {
           if(data.rows[0] != undefined)
           {
                if(passwordHash.verify(password, data.rows[0].password))
-                    response.status(200).send("Welcome...login successfully Done...")
+                    {
+                         const token = jwt.sign({email: request.body.email}, process.env.SECRET_TOKEN)
+                         response.header('auth-token', token).send(token)
+                    //response.status(200).send("Welcome...login successfully Done...")
+                    }
                else next()
           }
           else next()
